@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crossword War</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="shell">
+    <section class="scorebar" aria-label="Game status">
+      <div class="brand">
+        <span class="brand-mark">CW</span>
+        <div>
+          <h1>Crossword War</h1>
+          <p>Outsolve. Outplay. Outrage the old word-game empire.</p>
+        </div>
+      </div>
+
+      <div class="turn-panel">
+        <span class="label">Current Turn</span>
+        <strong id="turnName">Player 1</strong>
+        <span id="phaseText">Place one word or sabotage, then pass control.</span>
+      </div>
+
+      <button id="resetButton" class="icon-button" type="button" title="Restart game" aria-label="Restart game">
+        &#8635;
+      </button>
+    </section>
+
+    <section class="arena" aria-label="Player boards">
+      <article class="player-panel active" id="panel-p1">
+        <div class="player-head">
+          <div>
+            <span class="label">Player 1</span>
+            <h2>Morning Heat</h2>
+          </div>
+          <strong id="score-p1">0 / 30</strong>
+        </div>
+        <div class="board-wrap">
+          <div class="crossword" id="board-p1" aria-label="Player 1 crossword"></div>
+        </div>
+      </article>
+
+      <article class="player-panel" id="panel-p2">
+        <div class="player-head">
+          <div>
+            <span class="label">Player 2</span>
+            <h2>Late Edition</h2>
+          </div>
+          <strong id="score-p2">0 / 30</strong>
+        </div>
+        <div class="board-wrap">
+          <div class="crossword" id="board-p2" aria-label="Player 2 crossword"></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="controls" aria-label="Turn controls">
+      <div class="clue-box">
+        <div class="clue-tabs" role="tablist" aria-label="Clue direction">
+          <button class="tab active" id="acrossTab" type="button">Across</button>
+          <button class="tab" id="downTab" type="button">Down</button>
+        </div>
+        <div id="clueList" class="clue-list"></div>
+      </div>
+
+      <div class="action-box">
+        <div class="entry-row">
+          <label for="letterInput">Answer</label>
+          <input id="letterInput" maxlength="8" autocomplete="off" inputmode="text" aria-label="Word to place">
+          <button id="placeButton" type="button">Place Word</button>
+        </div>
+
+        <div class="sabotage-grid">
+          <button class="sabotage" type="button" data-sabotage="ink">
+            <strong>Ink Spill</strong>
+            <span>Hide 3 enemy cells for one turn.</span>
+          </button>
+          <button class="sabotage" type="button" data-sabotage="swap">
+            <strong>Letter Swap</strong>
+            <span>Shuffle two enemy answers.</span>
+          </button>
+          <button class="sabotage" type="button" data-sabotage="block">
+            <strong>Deadline Block</strong>
+            <span>Lock one enemy square.</span>
+          </button>
+        </div>
+
+        <button id="endTurnButton" class="end-turn" type="button">End Turn</button>
+      </div>
+
+      <aside class="battle-log" aria-label="Battle log">
+        <h2>Battle Log</h2>
+        <ol id="logList"></ol>
+      </aside>
+    </section>
+  </main>
+
+  <div class="modal hidden" id="winModal" role="dialog" aria-modal="true" aria-labelledby="winTitle">
+    <div class="modal-card">
+      <span class="label">Final Edition</span>
+      <h2 id="winTitle">Player 1 Wins</h2>
+      <p id="winText">The crossword crown has changed hands.</p>
+      <button id="playAgainButton" type="button">Play Again</button>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
